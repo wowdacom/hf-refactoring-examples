@@ -39,13 +39,15 @@ const singer_statement = (invoice, singer) => {
     totalDiscount += save;
   }
 
-  msg += `${
+  msg += `<p>${
     invoice.customer
-  } 您好：\n總票價為 <span style="text-decoration:line-through">${originalTotalAmount.toLocaleString(
+  } 您好：\n本次總票價為 <span style="text-decoration:line-through">${originalTotalAmount.toLocaleString(
     "en-US"
-  )}$</span>\n`;
-  msg += `本次總消費為 ${totalAmount.toLocaleString("en-US")}$\n`;
-  msg += `此次會員資格為您節省了 ${totalDiscount.toLocaleString("en-US")}$\n`;
+  )}$</span></p><br>`;
+  msg += `<p>實際消費為 ${totalAmount.toLocaleString("en-US")}$</p>`;
+  msg += `<p>此次會員資格為您節省了 ${totalDiscount.toLocaleString(
+    "en-US"
+  )}$</p>`;
   return msg;
 };
 
@@ -60,7 +62,12 @@ onMounted(() => {
 </script>
 
 <template>
-  <p>2022 年底前申辦會員，享有演唱會九折優惠，一般展覽一律半價，敬啟把握!</p>
+  <p class="text-red-500 text-center">
+    <span class="text-red-200">✦✦✦✦ </span>2022
+    年底前申辦會員，享有演唱會九折優惠，一般展覽一律半價，敬啟把握!<span></span>
+    <span class="text-red-200"> ✦✦✦✦</span>
+  </p>
+  <br />
   <h1 v-html="alert" id="header"></h1>
 </template>
 
@@ -71,7 +78,6 @@ h1 {
   padding: 0 24px;
   display: flex;
   justify-content: center;
-  align-items: center;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   flex-direction: column;
