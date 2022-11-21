@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest",
+    "test:unit": "vitest --environment jsdom",
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
