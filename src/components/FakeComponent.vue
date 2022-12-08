@@ -47,7 +47,7 @@ const singer_statement = (name, singer) => {
 
   calcTickFee();
 
-  msg += `<p>${memberName} 您好：\n本次總票價為 <span style="text-decoration:line-through">${originalTotalAmount.toLocaleString(
+  msg += `<p>${memberName} 親愛的消費者您好：\n本次總票價為 <span style="text-decoration:line-through">${originalTotalAmount.toLocaleString(
     "en-US"
   )}$</span></p><br>`;
   msg += `<p>實際消費為 ${totalAmount.toLocaleString("en-US")}$</p>`;
