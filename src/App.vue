@@ -5,5 +5,5 @@ import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
-  <HelloWorld customer="公館陳柏霖" />
+  <HelloWorld customer="廣東粥" />
 </template>

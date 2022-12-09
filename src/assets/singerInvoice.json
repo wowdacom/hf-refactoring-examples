@@ -1,8 +1,6 @@
-[
-  {
+[{
     "customer": "公館陳柏霖",
-    "performances": [
-      {
+    "performances": [{
         "playID": "落日飛車",
         "fee": 1200
       },
@@ -15,5 +13,19 @@
         "fee": 1000
       }
     ]
+  },
+  {
+    "customer": "東區桂綸鎂",
+    "performances": [{
+      "playID": "落日飛車",
+      "fee": 1200
+    }]
+  },
+  {
+    "customer": "廣東粥",
+    "performances": [{
+      "playID": "盧廣仲",
+      "fee": 5000
+    }]
   }
 ]
