@@ -1,47 +1,53 @@
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, toRefs, onMounted } from "vue";
 import SINGERS_INVOICES from "../assets/singerInvoice.json";
 import SINGERS from "../assets/singerList.json";
 
-defineProps({
-  msg: String,
+const props = defineProps({
+  customer: String,
 });
 
 const alert = ref("");
-
-const singer_statement = (invoice, singer) => {
+const getMemberPerformances = (memberName) =>
+  SINGERS_INVOICES.filter((info) => info.customer === memberName)[0]
+    .performances;
+const singer_statement = (name, singer) => {
   let msg = "";
   let originalTotalAmount = 0;
   let totalAmount = 0;
   let totalDiscount = 0;
+  let memberName = name;
+  let performances = getMemberPerformances(memberName);
 
-  for (let ticket of invoice.performances) {
-    let cost = 0;
-    let save = 0;
-    let off = 1;
-    switch (singer[ticket.playID].type) {
-      case "concert":
-        off = 0.9;
-        cost = ticket.fee * off;
-        save = ticket.fee - cost;
-        break;
-      case "exhibition":
-        off = 0.5;
-        cost = ticket.fee * off;
-        save = ticket.fee - cost;
-        break;
-      default:
-        throw new Error(`unkown type: ${singer[ticket.playID].type}`);
+  const calcTickFee = () => {
+    for (let ticket of performances) {
+      let cost = 0;
+      let save = 0;
+      let off = 1;
+      switch (singer[ticket.playID].type) {
+        case "concert":
+          off = 0.9;
+          cost = ticket.fee * off;
+          save = ticket.fee - cost;
+          break;
+        case "exhibition":
+          off = 0.5;
+          cost = ticket.fee * off;
+          save = ticket.fee - cost;
+          break;
+        default:
+          throw new Error(`unkown type: ${singer[ticket.playID].type}`);
+      }
+
+      originalTotalAmount += ticket.fee;
+      totalAmount += cost;
+      totalDiscount += save;
     }
+  };
 
-    originalTotalAmount += ticket.fee;
-    totalAmount += cost;
-    totalDiscount += save;
-  }
+  calcTickFee();
 
-  msg += `<p>${
-    invoice.customer
-  } 您好：\n本次總票價為 <span style="text-decoration:line-through">${originalTotalAmount.toLocaleString(
+  msg += `<p>${memberName} 親愛的消費者您好：\n本次總票價為 <span style="text-decoration:line-through">${originalTotalAmount.toLocaleString(
     "en-US"
   )}$</span></p><br>`;
   msg += `<p>實際消費為 ${totalAmount.toLocaleString("en-US")}$</p>`;
@@ -52,7 +58,8 @@ const singer_statement = (invoice, singer) => {
 };
 
 onMounted(() => {
-  const message = singer_statement(SINGERS_INVOICES[0], SINGERS);
+  const { customer } = toRefs(props);
+  const message = singer_statement(customer.value, SINGERS);
   // Try edit me
   console.log(message);
 
@@ -68,7 +75,7 @@ onMounted(() => {
     <span class="text-red-200"> ✦✦✦✦</span>
   </p>
   <br />
-  <h1 v-html="alert" id="header"></h1>
+  <h1 data-test="target" v-html="alert" id="header"></h1>
 </template>
 
 <style scoped>

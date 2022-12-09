@@ -12,7 +12,11 @@ describe("Basic Test", () => {
 
 describe("Hellow World", () => {
   it("Hellow World", async () => {
-    const wrapper = mount(HelloWorld);
+    const wrapper = mount(HelloWorld, {
+      props: {
+        customer: "公館陳柏霖",
+      },
+    });
     await nextTick();
     expect(wrapper.text()).toContain("公館陳柏霖");
   });
@@ -28,7 +32,11 @@ describe("Hellow World", () => {
 
 describe("確認算出來的數字正確", () => {
   it("Hellow World", async () => {
-    const wrapper = mount(HelloWorld);
+    const wrapper = mount(HelloWorld, {
+      props: {
+        customer: "公館陳柏霖",
+      },
+    });
     await nextTick();
     expect(wrapper.text()).toContain("395");
   });
