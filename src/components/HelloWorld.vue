@@ -17,7 +17,9 @@ const singer_statement = (name, singer) => {
   let totalAmount = 0;
   let totalDiscount = 0;
   let memberName = name;
+
   let performances = getMemberPerformances(memberName);
+  console.log(performances);
 
   const calcTickFee = () => {
     for (let ticket of performances) {
@@ -38,11 +40,14 @@ const singer_statement = (name, singer) => {
         default:
           throw new Error(`unkown type: ${singer[ticket.playID].type}`);
       }
-
-      originalTotalAmount += ticket.fee;
       totalAmount += cost;
       totalDiscount += save;
     }
+
+    originalTotalAmount = performances.reduce(
+      (total, currentItem) => total + currentItem.fee,
+      0
+    );
   };
 
   calcTickFee();

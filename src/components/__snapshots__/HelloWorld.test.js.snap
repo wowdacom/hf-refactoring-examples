@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`snapshot 1`] = `
+"<h1 data-test=\\"target\\" id=\\"header\\" data-v-e17ea971=\\"\\">
+  <p>公館陳柏霖 親愛的消費者您好：
+    本次總票價為 <span style=\\"text-decoration:line-through\\">2,550$</span></p><br>
+  <p>實際消費為 2,155$</p>
+  <p>此次會員資格為您節省了 395$</p>
+</h1>"
+`;

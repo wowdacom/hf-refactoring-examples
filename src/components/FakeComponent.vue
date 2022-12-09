@@ -1,10 +1,10 @@
 <script setup>
-import { ref, toRefs, onMounted } from "vue";
+import { ref, onMounted } from "vue";
 import SINGERS_INVOICES from "../assets/singerInvoice.json";
 import SINGERS from "../assets/singerList.json";
 
-const props = defineProps({
-  customer: String,
+defineProps({
+  msg: String,
 });
 
 const alert = ref("");
@@ -58,8 +58,7 @@ const singer_statement = (name, singer) => {
 };
 
 onMounted(() => {
-  const { customer } = toRefs(props);
-  const message = singer_statement(customer.value, SINGERS);
+  const message = singer_statement("公館陳柏霖", SINGERS);
   // Try edit me
   console.log(message);
 

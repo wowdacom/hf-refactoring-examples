@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, test } from "vitest";
 import { nextTick } from "vue";
 import { mount } from "@vue/test-utils";
 import HelloWorld from "./HelloWorld.vue";
@@ -10,17 +10,39 @@ describe("Basic Test", () => {
   });
 });
 
-describe("Hellow World", () => {
-  it("Hellow World", async () => {
-    const wrapper = mount(HelloWorld, {
-      props: {
-        customer: "公館陳柏霖",
-      },
-    });
-    await nextTick();
-    expect(wrapper.text()).toContain("公館陳柏霖");
+test("total", async () => {
+  const wrapper = mount(HelloWorld, {
+    props: {
+      customer: "廣東粥",
+    },
   });
+  await nextTick();
+
+  expect(wrapper.find('[data-test="target"]').html()).toContain("5,000");
 });
+
+test("discount", async () => {
+  const wrapper = mount(HelloWorld, {
+    props: {
+      customer: "廣東粥",
+    },
+  });
+  await nextTick();
+
+  expect(wrapper.find('[data-test="target"]').html()).toContain("500");
+});
+
+// describe("Hellow World", () => {
+//   it("Hellow World", async () => {
+//     const wrapper = mount(HelloWorld, {
+//       props: {
+//         customer: "東區桂綸鎂",
+//       },
+//     });
+//     await nextTick();
+//     expect(wrapper.text()).toContain("東區桂綸鎂");
+//   });
+// });
 
 //注意 render 的順序
 
@@ -30,17 +52,27 @@ describe("Hellow World", () => {
 
 //設計我要做的測試，確定修改後不會壞掉
 
-describe("確認算出來的數字正確", () => {
-  it("Hellow World", async () => {
-    const wrapper = mount(HelloWorld, {
-      props: {
-        customer: "公館陳柏霖",
-      },
-    });
-    await nextTick();
-    expect(wrapper.text()).toContain("395");
-  });
-});
+// describe("確認算出來的數字正確", () => {
+//   it("Hellow World", async () => {
+//     const wrapper = mount(HelloWorld, {
+//       props: {
+//         customer: "公館陳柏霖",
+//       },
+//     });
+//     await nextTick();
+//     expect(wrapper.text()).toContain("395");
+//   });
+// });
+
+// test("snapshot", async () => {
+//   const wrapper = mount(HelloWorld, {
+//     props: {
+//       customer: "公館陳柏霖",
+//     },
+//   });
+//   await nextTick();
+//   expect(wrapper.find('[data-test="target"]').html()).toMatchSnapshot();
+// });
 
 //分解 Statement 函式
 

@@ -2,9 +2,9 @@
 
 exports[`snapshot 1`] = `
 "<h1 data-test=\\"target\\" id=\\"header\\" data-v-a7e46a08=\\"\\">
-  <p>公館陳柏霖 親愛的消費者您好：
-    本次總票價為 <span style=\\"text-decoration:line-through\\">2,550$</span></p><br>
-  <p>實際消費為 2,155$</p>
-  <p>此次會員資格為您節省了 395$</p>
+  <p>東區桂綸鎂 親愛的消費者您好：
+    本次總票價為 <span style=\\"text-decoration:line-through\\">1,200$</span></p><br>
+  <p>實際消費為 1,080$</p>
+  <p>此次會員資格為您節省了 120$</p>
 </h1>"
 `;
